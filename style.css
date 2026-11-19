@@ -5,7 +5,7 @@
   --line: #1f1f1f;
   --card-line: #2a2a2a;
   --code-bg: #1e1e1e;
-  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --mono: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, "Cascadia Mono", "DejaVu Sans Mono", "Liberation Mono", monospace;
   --sans: Inter, "Noto Sans JP", system-ui, -apple-system, sans-serif;
 }
 
@@ -60,6 +60,7 @@ html[data-lang="ja"] .hero h1 { font-size: clamp(36px, 4.6vw, 62px); line-height
 .code { flex: 1 1 480px; min-width: 0; background: var(--code-bg); border: 1px solid var(--card-line); border-radius: 16px; overflow: hidden; }
 .code-head { display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--card-line); font-family: var(--mono); font-size: 13px; color: var(--muted); }
 pre { margin: 0; padding: 24px; font-family: var(--mono); font-size: 14.5px; line-height: 1.75; overflow-x: auto; color: #d4d4d4; }
+pre code { font-family: inherit; font-size: inherit; }
 .k { color: #c586c0; } .t { color: #4ec9b0; } .f { color: #dcdcaa; } .s { color: #ce9178; } .n { color: #b5cea8; } .c { color: #8b949e; } .d { color: #569cd6; }
 
 /* cards */
