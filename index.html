@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnifiedMozaic — One language. Every core.</title>
+<meta name="description" content="UnifiedMozaic is a statically typed language with TypeScript-like syntax. It compiles through LLVM to native executables and WebAssembly, with no garbage collector, and lets you write CPU and GPU code in the same source.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://unifiedmozaic.org/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UnifiedMozaic">
+<meta property="og:title" content="UnifiedMozaic — One language. Every core.">
+<meta property="og:description" content="Write CPU and GPU code in one language. TypeScript-like syntax, ownership instead of GC, compiled through LLVM.">
+<meta property="og:url" content="https://unifiedmozaic.org/">
+<meta property="og:image" content="https://unifiedmozaic.org/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@UnifiedMozaic">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script>
+  // Choose the language before first paint: saved choice, then the browser's language.
+  (function () {
+    var lang = null;
+    try { lang = localStorage.getItem("um-lang"); } catch (e) {}
+    if (lang !== "en" && lang !== "ja") {
+      lang = (navigator.language || "").toLowerCase().indexOf("ja") === 0 ? "ja" : "en";
+    }
+    document.documentElement.setAttribute("data-lang", lang);
+    document.documentElement.setAttribute("lang", lang);
+  })();
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav class="top" aria-label="Main">
+      <a class="brand" href="/">
+        <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(0 0.6)"><polygon points="3.70,14.50 3.70,3.87 16.00,11.08 28.30,3.87 28.30,14.50 25.70,14.50 25.70,8.73 16.00,14.42 6.30,8.73 6.30,14.50" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></polygon><path d="M7.5 18.5 V22 C7.5 26.69 10.05 28.7 16 28.7 C21.95 28.7 24.5 26.69 24.5 22 V18.5 H20.9 V22 C20.9 24.87 19.43 26.1 16 26.1 C12.57 26.1 11.1 24.87 11.1 22 V18.5 Z" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></path></g></svg>
+        UnifiedMozaic
+      </a>
+      <div class="links">
+        <a href="#features"><span lang="en">Features</span><span lang="ja">特徴</span></a>
+        <a href="#ai"><span lang="en">AI-native</span><span lang="ja">AIネイティブ</span></a>
+        <a href="#start"><span lang="en">Get Started</span><span lang="ja">はじめる</span></a>
+        <a href="https://docs.unifiedmozaic.org"><span lang="en">Docs</span><span lang="ja">ドキュメント</span></a>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-set-lang="ja" aria-pressed="false">日本語</button>
+        </div>
+        <a class="btn primary small" href="https://github.com/UnifiedMozaic/UnifiedMozaic">GitHub</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="badge"><span lang="en">Experimental</span><span lang="ja">開発中（実験段階）</span></span>
+        <h1><span lang="en">One language.<br>Every core.</span><span lang="ja">ひとつの言語で、<br>すべてのコアを。</span></h1>
+        <p class="lead">
+          <span lang="en">A statically typed language with TypeScript-like syntax. It compiles through LLVM to native executables and WebAssembly, with no garbage collector — and lets you write CPU and GPU code in the same source.</span>
+          <span lang="ja">TypeScriptに近い構文の、静的型付け言語です。GCを持たず、LLVMを経由してネイティブとWebAssemblyにコンパイルします。CPUとGPUのコードを、同じソースに書けます。</span>
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#start"><span lang="en">Get Started</span><span lang="ja">はじめる</span></a>
+          <a class="btn ghost" href="https://docs.unifiedmozaic.org"><span lang="en">Read the Docs</span><span lang="ja">ドキュメントを読む</span></a>
+        </div>
+      </div>
+      <figure class="code" style="margin:0">
+        <figcaption class="code-head">
+          <svg width="16" height="16" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(0 0.6)"><polygon points="3.70,14.50 3.70,3.87 16.00,11.08 28.30,3.87 28.30,14.50 25.70,14.50 25.70,8.73 16.00,14.42 6.30,8.73 6.30,14.50" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></polygon><path d="M7.5 18.5 V22 C7.5 26.69 10.05 28.7 16 28.7 C21.95 28.7 24.5 26.69 24.5 22 V18.5 H20.9 V22 C20.9 24.87 19.43 26.1 16 26.1 C12.57 26.1 11.1 24.87 11.1 22 V18.5 Z" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></path></g></svg>
+          particles.um
+        </figcaption>
+<pre><code><span class="k">struct</span> <span class="t">Particle</span> {
+  pos: <span class="t">f32</span>;
+  vel: <span class="t">f32</span>;
+}
+
+<span class="c">// A kernel runs once per index, on the CPU (all cores) or on the GPU.</span>
+<span class="k">kernel</span> <span class="d">function</span> <span class="f">integrate</span>(i: <span class="t">u32</span>, ps: <span class="k">mut</span> <span class="t">Buffer</span>&lt;<span class="t">Particle</span>&gt;, dt: <span class="t">f32</span>): <span class="t">void</span> {
+  ps[i].pos = ps[i].pos + ps[i].vel * dt;
+}
+
+<span class="k">export</span> <span class="d">function</span> <span class="f">main</span>(): <span class="t">i32</span> {
+  <span class="k">let</span> ps = <span class="k">new</span> <span class="t">Buffer</span>&lt;<span class="t">Particle</span>&gt;(<span class="n">1000</span>);
+  ps[<span class="n">0</span>].vel = <span class="n">2</span>;
+  <span class="f">dispatch</span>(integrate, ps.length, <span class="k">mut</span> ps, <span class="n">0.5</span>);
+  <span class="f">print</span>(ps[<span class="n">0</span>].pos);   <span class="c">// 1</span>
+  <span class="k">return</span> <span class="n">0</span>;
+}</code></pre>
+      </figure>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap section stack">
+      <h2><span lang="en">Why UnifiedMozaic</span><span lang="ja">UnifiedMozaicの特徴</span></h2>
+      <div class="grid">
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/><rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/></svg>
+          <h3><span lang="en">One source for CPU and GPU</span><span lang="ja">CPUとGPUを、ひとつのソースで</span></h3>
+          <p><span lang="en"><code>kernel</code> functions mean the same on every backend: a CPU thread pool, Apple GPUs through Metal, and experimentally WebGPU. <code>dispatch</code> picks CPU or GPU by measurement.</span><span lang="ja"><code>kernel</code> 関数は、CPUのスレッドプール、Metal経由のApple GPU、実験的にWebGPUのどれでも同じ意味で動きます。CPUかGPUかは <code>dispatch</code> が計測して選びます。</span></p>
+        </div>
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h12"/><path d="M12 6l6 6-6 6"/><path d="M20 4v16"/></svg>
+          <h3><span lang="en">Ownership instead of GC</span><span lang="ja">GCの代わりに所有権</span></h3>
+          <p><span lang="en">Heap values have a single owner. Arguments are borrowed, mutably borrowed (<code>mut</code>) or moved (<code>own</code>), checked at compile time.</span><span lang="ja">ヒープの値の持ち主は常にひとり。引数は借用・可変借用（<code>mut</code>）・移動（<code>own</code>）のどれかで、コンパイル時に検査します。</span></p>
+        </div>
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          <h3><span lang="en">Safe by default</span><span lang="ja">標準で安全</span></h3>
+          <p><span lang="en">Out-of-bounds access, division by zero and oversized shifts stop with a clear message. No undefined behaviour, and no <code>unsafe</code>.</span><span lang="ja">範囲外アクセス・ゼロ除算・大きすぎるシフトは、分かりやすいメッセージで停止します。未定義動作はなく、<code>unsafe</code> もありません。</span></p>
+        </div>
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6"/><path d="M16 6l6 6-6 6"/></svg>
+          <h3><span lang="en">TypeScript-like, explicit types</span><span lang="ja">TypeScript風、型は明示</span></h3>
+          <p><span lang="en">Sized numbers down to <code>f16</code>, structs, classes, enums with <code>match</code>, interfaces, generics and nullable types. No implicit conversions.</span><span lang="ja"><code>f16</code> まで揃った数値型、構造体、クラス、<code>match</code> 付きの enum、インターフェース、ジェネリクス、nullable。暗黙の型変換はありません。</span></p>
+        </div>
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4v16"/><path d="M12 4v16"/><path d="M19 4v16"/></svg>
+          <h3><span lang="en">Threads without data races</span><span lang="ja">データ競合のないスレッド</span></h3>
+          <p><span lang="en"><code>thread.spawn</code> / <code>thread.join</code>, with <code>RacyBuffer</code> as the only shared mutable data — every element access is atomic.</span><span lang="ja"><code>thread.spawn</code> / <code>thread.join</code>。共有して書き換えられるのは、要素のアクセスがアトミックな <code>RacyBuffer</code> だけです。</span></p>
+        </div>
+        <div class="card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+          <h3><span lang="en">Low-level speed when you need it</span><span lang="ja">必要なときは低レベルの速さ</span></h3>
+          <p><span lang="en">128-bit SIMD types, <code>Math.prefetch</code>, bounds-check elimination and bulk <code>fill</code>. Compiled through LLVM.</span><span lang="ja">128ビットのSIMD型、<code>Math.prefetch</code>、範囲検査の除去、一括の <code>fill</code>。LLVMでコンパイルします。</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ai">
+    <div class="wrap section split">
+      <div>
+        <p class="eyebrow"><span lang="en">AI-native</span><span lang="ja">AIネイティブ</span></p>
+        <h2><span lang="en">Runs AI.<br>Written with AI.</span><span lang="ja">AIを動かし、<br>AIと書く。</span></h2>
+        <p class="lead"><span lang="en">Built for the code that runs models, and for the models that write code.</span><span lang="ja">モデルを動かすコードのために。そして、コードを書くモデルのために。</span></p>
+      </div>
+      <div>
+        <div class="card row-card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+          <div class="stack" style="gap:8px"><h3><span lang="en">Made for AI workloads</span><span lang="ja">AIの処理のために</span></h3><p class="muted"><span lang="en">Numeric kernels run on CPU and GPU from one source, with small types like <code>f16</code>, <code>i8</code> and <code>u8</code> buffers.</span><span lang="ja">数値計算のカーネルを、ひとつのソースでCPUとGPUの両方に。<code>f16</code> や <code>i8</code>・<code>u8</code> の Buffer のような小さな型も使えます。</span></p></div>
+        </div>
+        <div class="card row-card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg>
+          <div class="stack" style="gap:8px"><h3><span lang="en">Diagnostics for humans and AI</span><span lang="ja">人にもAIにも読める診断</span></h3><p class="muted"><span lang="en">Every error carries a code, a location and a hint, and <code>check --json</code> gives machine-readable diagnostics.</span><span lang="ja">エラーには必ずコード・場所・ヒントが付き、<code>check --json</code> で機械が読める形の診断を出せます。</span></p></div>
+        </div>
+        <div class="card row-card">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          <div class="stack" style="gap:8px"><h3><span lang="en">Safe when AI writes it</span><span lang="ja">AIが書いても安全</span></h3><p class="muted"><span lang="en">A syntax that language models already know, ownership checked at compile time, and no undefined behaviour to slip through.</span><span lang="ja">言語モデルが慣れた構文に、コンパイル時の所有権検査。未定義動作が紛れ込む余地もありません。</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap section stack">
+      <h2><span lang="en">Get Started</span><span lang="ja">はじめる</span></h2>
+      <div class="split">
+        <div>
+          <h3><span lang="en">Requirements</span><span lang="ja">必要なもの</span></h3>
+          <ul class="reqs">
+            <li><span lang="en">Node.js 22.18 or later</span><span lang="ja">Node.js 22.18 以上</span></li>
+            <li><span lang="en"><span class="inline">clang</span> from LLVM 18 or later (<span class="inline">wasm-ld</span> for WebAssembly)</span><span lang="ja">LLVM 18 以上の <span class="inline">clang</span>（WebAssemblyには <span class="inline">wasm-ld</span> も）</span></li>
+            <li><span lang="en">For GPU on a Mac: Apple Silicon with Xcode or the Command Line Tools</span><span lang="ja">MacでGPUを使うなら、Apple SiliconとXcodeまたはCommand Line Tools</span></li>
+            <li><span lang="en">No npm dependencies</span><span lang="ja">npmの依存はありません</span></li>
+          </ul>
+          <p class="muted"><span lang="en">Step-by-step setup, including the <span class="inline">um</span> command, is in the <a href="https://docs.unifiedmozaic.org">documentation</a>.</span><span lang="ja"><span class="inline">um</span> コマンドを含む詳しい手順は<a href="https://docs.unifiedmozaic.org">ドキュメント</a>にあります。</span></p>
+        </div>
+        <div class="term">
+<pre><code><span class="f">git</span> clone https://github.com/UnifiedMozaic/UnifiedMozaic.git
+<span class="f">cd</span> UnifiedMozaic
+
+<span class="c"># Native executable</span>
+<span class="f">node</span> src/cli.ts build examples/structs.um --target host -o structs
+./structs
+
+<span class="c"># Kernels on the GPU through Metal (Apple Silicon)</span>
+UM_METAL=1 <span class="f">node</span> src/cli.ts build examples/kernels.um --target host -o kernels
+./kernels
+
+<span class="c"># WebAssembly</span>
+<span class="f">node</span> src/cli.ts build examples/structs.um -o structs.wasm
+<span class="f">node</span> runtime/run-node.mjs structs.wasm</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="docs">
+    <div class="wrap section stack">
+      <h2><span lang="en">Learn more</span><span lang="ja">もっと知る</span></h2>
+      <div class="grid">
+        <a class="card" href="https://docs.unifiedmozaic.org"><span class="title"><span lang="en">Documentation →</span><span lang="ja">ドキュメント →</span></span><span class="muted"><span lang="en">Setup, guide and reference</span><span lang="ja">セットアップ・ガイド・リファレンス</span></span></a>
+        <a class="card" href="https://github.com/UnifiedMozaic/UnifiedMozaic/tree/main/examples"><span class="title"><span lang="en">Examples →</span><span lang="ja">サンプル →</span></span><span class="muted"><span lang="en">Runnable programs that double as tests</span><span lang="ja">そのままテストにもなる、動くプログラム集</span></span></a>
+        <a class="card" href="https://github.com/UnifiedMozaic/vscode-extension"><span class="title"><span lang="en">VS Code extension →</span><span lang="ja">VS Code 拡張 →</span></span><span class="muted"><span lang="en">Highlighting, checks on save, build and run</span><span lang="ja">色分け、保存時の型検査、ビルドと実行</span></span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="left">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><g transform="translate(0 0.6)"><polygon points="3.70,14.50 3.70,3.87 16.00,11.08 28.30,3.87 28.30,14.50 25.70,14.50 25.70,8.73 16.00,14.42 6.30,8.73 6.30,14.50" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></polygon><path d="M7.5 18.5 V22 C7.5 26.69 10.05 28.7 16 28.7 C21.95 28.7 24.5 26.69 24.5 22 V18.5 H20.9 V22 C20.9 24.87 19.43 26.1 16 26.1 C12.57 26.1 11.1 24.87 11.1 22 V18.5 Z" fill="currentColor" stroke="currentColor" stroke-width="1.0" stroke-linejoin="round"></path></g></svg>
+      <span><span lang="en">UnifiedMozaic · Licensed under Apache-2.0 or MIT</span><span lang="ja">UnifiedMozaic · Apache-2.0 または MIT ライセンス</span></span>
+    </div>
+    <div class="right">
+      <a href="https://github.com/UnifiedMozaic">GitHub</a>
+      <a href="https://x.com/UnifiedMozaic">X</a>
+      <a href="https://github.com/UnifiedMozaic/UnifiedMozaic/blob/main/SECURITY.md"><span lang="en">Security</span><span lang="ja">セキュリティ</span></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll("[data-set-lang]");
+    function apply(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang);
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute("aria-pressed", buttons[i].getAttribute("data-set-lang") === lang ? "true" : "false");
+      }
+    }
+    apply(root.getAttribute("data-lang") || "en");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function () {
+        var lang = this.getAttribute("data-set-lang");
+        apply(lang);
+        try { localStorage.setItem("um-lang", lang); } catch (e) {}
+      });
+    }
+  })();
+</script>
+</body>
+</html>
